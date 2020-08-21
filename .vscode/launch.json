@@ -8,7 +8,7 @@
         "name": "clang++ - build active file",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/helloworld.out",
+        "program": "${workspaceFolder}/main.out",
         "args": [],
         "stopAtEntry": true,
         "cwd": "${workspaceFolder}",

@@ -11,7 +11,7 @@
 				"-g",
 				"${workspaceFolder}/**/*.cpp",
 				"-o",
-				"${workspaceFolder}/helloworld.out"
+				"${workspaceFolder}/main.out"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"
