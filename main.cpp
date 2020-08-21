@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <random>
 #include <string>
+#include "bst.h"
 #include "permutations.h"
 
 using namespace std;
@@ -19,9 +21,21 @@ vector<string> reorderLogFiles_opt(vector<string>& logs);
 
 int main()
 {
-    vector<string> logs {"dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art can"};
-    auto output = reorderLogFiles_opt(logs);
-    print(output);
+    tree<unsigned int> numbers(1);
+    insert(&numbers, (unsigned int)1);
+
+    auto rand = random_device();
+
+    for (int i = 0; i < 20; i++)
+    {
+        insert(&numbers, rand());
+    }
+
+    traverse(&numbers, [&numbers](const auto& tree, const int& level) { print(tree, level); });
+
+    // vector<string> logs {"dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art can"};
+    // auto output = reorderLogFiles_opt(logs);
+    // print(output);
 
     // string paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.";
     // vector<string> banned {"hit"};
