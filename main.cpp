@@ -29,13 +29,15 @@ int main()
     insert(&numbers, 4);
     insert(&numbers, 6);
     insert(&numbers, 8);
+    auto result = breadth_first_search(numbers, 4);
+    cout << result->item << endl;
 
-    traverse(numbers, [numbers](const auto& tree, const int& level) { print(tree, level); });
-    cout << endl;
-    remove_item(numbers, 4);
-    remove_item(numbers, 8);
-    remove_item(numbers, 5);
-    traverse(numbers, [numbers](const auto& tree, const int& level) { print(tree, level); });
+    // traverse(numbers, [numbers](const auto& tree, const int& level) { print(tree, level); });
+    // cout << endl;
+    // remove_item(numbers, 4);
+    // remove_item(numbers, 8);
+    // remove_item(numbers, 5);
+    // traverse(numbers, [numbers](const auto& tree, const int& level) { print(tree, level); });
 
     // tree<unsigned int> numbers(1960278308);
     // insert(&numbers, (unsigned int)1960278309);

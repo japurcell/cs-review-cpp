@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 
 using namespace std;
 
@@ -30,6 +31,28 @@ struct tree
     tree(const T& item) : item(item), parent(NULL), left(NULL), right(NULL) { }
     tree(const tree<T>& other) = delete;
 };
+
+template <class T>
+const tree<T> * const breadth_first_search(tree<T> * const tree, const T& item)
+{
+    if (tree == NULL) return tree;
+
+    queue<::tree<T>*> q;
+    q.push(tree);
+
+    while (!q.empty())
+    {
+        auto up_next = q.front();
+        q.pop();
+
+        if (item == up_next->item) return up_next;
+
+        if (up_next->left != NULL) q.push(up_next->left);
+        if (up_next->right != NULL) q.push(up_next->right);
+    }
+
+    return tree;
+}
 
 template <class T>
 tree<T> * remove_item(tree<T> * tree, const T& t)
