@@ -29,29 +29,89 @@ struct tree
     tree() { }
     tree(const T& item) : item(item), parent(NULL), left(NULL), right(NULL) { }
     tree(const tree<T>& other) = delete;
-
-    ~tree()
-    {
-        delete left;
-        delete right;
-    }
 };
 
 template <class T>
-const tree<T> * const insert(tree<T> * const tree, const T& t)
+tree<T> * remove_item(tree<T> * tree, const T& t)
 {
-    if (tree == NULL || t == tree->item) return tree;
+    if (tree == NULL) return tree;
 
-    auto target = t < tree->item ? &tree->left : &tree->right;
-
-    if (*target == NULL)
+    if (t < tree->item)
     {
-        *target = new ::tree<T>();
-        (*target)->item = t;
-        (*target)->parent = tree;
-        return tree;
+        tree->left = remove_item(tree->left, t);
     }
-    else return insert(*target, t);
+    else if (t > tree->item)
+    {
+        tree->right = remove_item(tree->right, t);
+    }
+    else
+    {
+        if (tree->left == NULL)
+        {
+            auto temp = tree->right;
+            delete tree;
+            return temp;
+        }
+        else if(tree->right == NULL)
+        {
+            auto temp = tree->left;
+            delete tree;
+            return temp;
+        }
+
+        auto temp = minimum(tree->right);
+        tree->item = temp->item;
+        tree->right = remove_item(tree->right, temp->item);
+    }
+
+    return tree;
+}
+
+template <class T>
+const tree<T> * const insert(tree<T> ** tree, const T& t, ::tree<T> * const parent = NULL)
+{
+    ::tree<T> *temp;
+
+    if (*tree == NULL)
+    {
+        temp = new ::tree<T>();
+        temp->item = t;
+        temp->parent = parent;
+        *tree = temp;
+        return *tree;
+    }
+    else if (t < (*tree)->item) insert(&((*tree)->left), t, *tree);
+    else insert(&((*tree)->right), t, *tree);
+
+    return *tree;
+}
+
+template <class T>
+const tree<T> * const minimum(const tree<T> * const tree)
+{
+    if (tree == NULL) return tree;
+
+    auto temp = &tree;
+    while ((*temp)->left != NULL)
+    {
+        temp = &(*temp)->left;
+    }
+
+    return *temp;
+}
+
+template <class T>
+const tree<T> * const maximum(const tree<T> * const tree)
+{
+    if (tree == NULL) return tree;
+
+    auto temp = &tree;
+    while ((*temp)->right != NULL)
+    {
+        temp = &(*temp)->right;
+    }
+
+    return *temp;
 }
 
 template <class T>

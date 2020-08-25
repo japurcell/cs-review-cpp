@@ -21,17 +21,38 @@ vector<string> reorderLogFiles_opt(vector<string>& logs);
 
 int main()
 {
-    tree<unsigned int> numbers(1);
-    insert(&numbers, (unsigned int)1);
+    auto numbers = new tree<int>(5);
+    insert(&numbers, 2);
+    insert(&numbers, 7);
+    insert(&numbers, 1);
+    insert(&numbers, 3);
+    insert(&numbers, 4);
+    insert(&numbers, 6);
+    insert(&numbers, 8);
 
-    auto rand = random_device();
+    traverse(numbers, [numbers](const auto& tree, const int& level) { print(tree, level); });
+    cout << endl;
+    remove_item(numbers, 4);
+    remove_item(numbers, 8);
+    remove_item(numbers, 5);
+    traverse(numbers, [numbers](const auto& tree, const int& level) { print(tree, level); });
 
-    for (int i = 0; i < 20; i++)
-    {
-        insert(&numbers, rand());
-    }
+    // tree<unsigned int> numbers(1960278308);
+    // insert(&numbers, (unsigned int)1960278309);
 
-    traverse(&numbers, [&numbers](const auto& tree, const int& level) { print(tree, level); });
+    // auto rand = random_device();
+
+    // for (int i = 0; i < 20; i++)
+    // {
+    //     insert(&numbers, rand());
+    // }
+
+    // traverse(&numbers, [&numbers](const auto& tree, const int& level) { print(tree, level); });
+
+    // auto min = minimum(&numbers);
+    // cout << min->item << endl;
+    // auto max = maximum(&numbers);
+    // cout << max->item << endl;
 
     // vector<string> logs {"dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art can"};
     // auto output = reorderLogFiles_opt(logs);
