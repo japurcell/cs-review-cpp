@@ -16,7 +16,7 @@ void print(const vector<T>& arr)
 {
     for (T i : arr)
     {
-        cout << i;
+        cout << i << " ";
     }
 
     cout << endl;

@@ -3,6 +3,7 @@
 #include <random>
 #include <string>
 #include "bst.h"
+#include "merge_sort.h"
 #include "permutations.h"
 
 using namespace std;
@@ -21,16 +22,21 @@ vector<string> reorderLogFiles_opt(vector<string>& logs);
 
 int main()
 {
-    auto numbers = new tree<int>(5);
-    insert(&numbers, 2);
-    insert(&numbers, 7);
-    insert(&numbers, 1);
-    insert(&numbers, 3);
-    insert(&numbers, 4);
-    insert(&numbers, 6);
-    insert(&numbers, 8);
-    auto result = breadth_first_search(numbers, 4);
-    cout << result->item << endl;
+    int nums[] = { 8, 4, 2, 0, 58, 292, 1, 23, 478 };
+    mergesort(nums, 0, sizeof(nums)/sizeof(int));
+    vector<int> v(nums, nums + sizeof(nums)/sizeof(int));
+    print(v);
+
+    // auto numbers = new tree<int>(5);
+    // insert(&numbers, 2);
+    // insert(&numbers, 7);
+    // insert(&numbers, 1);
+    // insert(&numbers, 3);
+    // insert(&numbers, 4);
+    // insert(&numbers, 6);
+    // insert(&numbers, 8);
+    // auto result = breadth_first_search(numbers, 4);
+    // cout << result->item << endl;
 
     // traverse(numbers, [numbers](const auto& tree, const int& level) { print(tree, level); });
     // cout << endl;
