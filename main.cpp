@@ -3,7 +3,9 @@
 #include <random>
 #include <string>
 #include "bst.h"
+#include "graph.h"
 #include "merge_sort.h"
+#include "number_of_islands.h"
 #include "permutations.h"
 
 using namespace std;
@@ -22,10 +24,19 @@ vector<string> reorderLogFiles_opt(vector<string>& logs);
 
 int main()
 {
-    int nums[] = { 8, 4, 2, 0, 58, 292, 1, 23, 478 };
-    mergesort(nums, 0, sizeof(nums)/sizeof(int));
-    vector<int> v(nums, nums + sizeof(nums)/sizeof(int));
-    print(v);
+    vector<vector<char>> grid({
+        { '1','1','0','0','0' },
+        { '1','1','0','0','0' },
+        { '0','0','1','0','0' },
+        { '0','0','0','1','1' }
+    });
+
+    cout << numIslands(grid) << endl;
+
+    // int nums[] = { 8, 4, 2, 0, 58, 292, 1, 23, 478 };
+    // mergesort(nums, 0, sizeof(nums)/sizeof(int));
+    // vector<int> v(nums, nums + sizeof(nums)/sizeof(int));
+    // print(v);
 
     // auto numbers = new tree<int>(5);
     // insert(&numbers, 2);
