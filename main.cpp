@@ -7,6 +7,7 @@
 #include "merge_sort.h"
 #include "number_of_islands.h"
 #include "permutations.h"
+#include "trees_graphs/bst_zigzap.h"
 
 using namespace std;
 
@@ -22,16 +23,48 @@ int maxArea(vector<int>& height);
 string mostCommonWord_opt(string paragraph, vector<string>& banned);
 vector<string> reorderLogFiles_opt(vector<string>& logs);
 
+bool isPalindrone(string s);
+string longest_palindrome(string s);
+
+vector<vector<int>> kClosest(vector<vector<int>>& points, int K);
+
 int main()
 {
-    vector<vector<char>> grid({
-        { '1','1','0','0','0' },
-        { '1','1','0','0','0' },
-        { '0','0','1','0','0' },
-        { '0','0','0','1','1' }
-    });
+    vector<vector<int>> points;
+    points.push_back({ 3, 3 });
+    points.push_back({ 5, -1});
+    points.push_back({ -2, 4 });
 
-    cout << numIslands(grid) << endl;
+    auto result = kClosest(points, 2);
+
+    for (auto const& point: result)
+    {
+        print(point);
+    }
+
+    // cout << isPalindrone("ab") << " ";
+    // cout << isPalindrone("bab") << " ";
+    // cout << isPalindrone("cbbd") << " ";
+    // cout << isPalindrone("a") << " ";
+    // cout << isPalindrone("ababa") << endl;
+
+    // string longest = longest_palindrome("cbbd");
+    // cout << longest << " ";
+    // longest = longest_palindrome("babad");
+    // cout << longest << " ";
+    // longest = longest_palindrome("");
+    // cout << longest << " ";
+    // longest = longest_palindrome("abcdbbfcba");
+    // cout << longest << endl;
+
+    // vector<vector<char>> grid({
+    //     { '1','1','0','0','0' },
+    //     { '1','1','0','0','0' },
+    //     { '0','0','1','0','0' },
+    //     { '0','0','0','1','1' }
+    // });
+
+    // cout << numIslands(grid) << endl;
 
     // int nums[] = { 8, 4, 2, 0, 58, 292, 1, 23, 478 };
     // mergesort(nums, 0, sizeof(nums)/sizeof(int));
